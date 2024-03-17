@@ -1,6 +1,8 @@
 project "ImGui"
     kind "StaticLib"
     language "C++"
+    cppdialect "C++20"
+    staticruntime "on"
     
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -19,17 +21,15 @@ project "ImGui"
         "imgui_demo.cpp",
         "imgui_tables.cpp"
     }
-    
-    cppdialect "C++17"
-    staticruntime "On"
 
     filter "system:macosx"
+        systemversion "11.0"
 
     filter "configurations:Debug"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         runtime "Release"
-        optimize "On"
+        optimize "on"
 

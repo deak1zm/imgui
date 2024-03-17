@@ -34,7 +34,7 @@ ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -m64
+ALL_LDFLAGS += $(LDFLAGS)
 LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
 define PREBUILDCMDS
 endef
@@ -44,25 +44,25 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),debug)
-TARGETDIR = bin/Debug-macosx-x86_64/ImGui
+TARGETDIR = bin/Debug-macosx-ARM64/ImGui
 TARGET = $(TARGETDIR)/libImGui.a
-OBJDIR = bin-int/Debug-macosx-x86_64/ImGui
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++17
+OBJDIR = bin-int/Debug-macosx-ARM64/ImGui
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -mmacosx-version-min=11.0
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++20 -mmacosx-version-min=11.0
 
 else ifeq ($(config),release)
-TARGETDIR = bin/Release-macosx-x86_64/ImGui
+TARGETDIR = bin/Release-macosx-ARM64/ImGui
 TARGET = $(TARGETDIR)/libImGui.a
-OBJDIR = bin-int/Release-macosx-x86_64/ImGui
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++17
+OBJDIR = bin-int/Release-macosx-ARM64/ImGui
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -mmacosx-version-min=11.0
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++20 -mmacosx-version-min=11.0
 
 else ifeq ($(config),dist)
-TARGETDIR = bin/Dist-macosx-x86_64/ImGui
+TARGETDIR = bin/Dist-macosx-ARM64/ImGui
 TARGET = $(TARGETDIR)/libImGui.a
-OBJDIR = bin-int/Dist-macosx-x86_64/ImGui
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -std=c++17
+OBJDIR = bin-int/Dist-macosx-ARM64/ImGui
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -mmacosx-version-min=11.0
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++20 -mmacosx-version-min=11.0
 
 endif
 
