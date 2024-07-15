@@ -28,7 +28,7 @@ ifeq ($(origin AR), default)
   AR = ar
 endif
 DEFINES +=
-INCLUDES += -IDeako/vendor/imgui
+INCLUDES +=
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
